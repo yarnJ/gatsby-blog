@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Getting started with Gatsby`,
+    title: `Getting started`,
     description: `A tutorial that goes over Gatsby development`,
     author: `@digitalocean`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
