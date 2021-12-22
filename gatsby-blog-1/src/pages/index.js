@@ -1,30 +1,40 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from 'react';
+import Layout from '../components/layout';
+import { graphql } from 'gatsby';
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+const IndexPage = ({ data }) => {
+  console.log(data);
+  return(
+    <main>
+      <title>Home Page</title>
+      <h1>Welcome to my Gatsby site!</h1>
+      <p>I'm making this by following the Gatsby Tutorial.</p>
+      <h4>{ data.allMarkdownRemark.totalCount }</h4>
+      {data.allMarkdownRemark.edges.map(({ node }) => {
+        <h3 key={node.id}>{node.html}</h3>
+      })}
+      <Layout pageTitle="connect"/>
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" />
-    <h1>Hello Shoppers, we are open for business!</h1>
-    <p>We sell fresh fruit.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["auto", "webp", "avif"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link> <br />
-      <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
-      <Link to="/using-dsg">Go to "Using DSG"</Link>
-    </p>
-  </Layout>
-)
+      <Layout pageTitle="about"></Layout>
+    </main>
+  )
+  };
 
-export default IndexPage
+export default IndexPage;
+
+export const query = graphql`
+  query {
+    allMarkdownRemark {
+      totalCount
+      edges {
+        node {
+          id
+          html
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`
