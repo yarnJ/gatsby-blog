@@ -9,10 +9,10 @@ import * as React from "react"
 import { Link } from "gatsby"
 import "./layout.css"
 
-const Layout = ({ pageTitle }) => {
+const Layout = ({ pageTitle, path }) => {
   return (
     <main>
-      <Link to={`/${ pageTitle }`}>{ pageTitle }</Link>
+      <Link to={`/${ path }`}>{ pageTitle }</Link>
     </main>
   )
 }
